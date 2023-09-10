@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="18.5" height="18.5" viewBox="0 0 18.5 18.5">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #0f0f0f;
+        fill-rule: evenodd;
+      }
+    </style>
+  </defs>
+  <g id="Group_3" data-name="Group 3" transform="translate(-834.56 -438.021)">
+    <path id="search-svgrepo-com" class="cls-1" d="M14.508,13.319a7.571,7.571,0,1,0-1.19,1.19l4.766,4.766a.841.841,0,0,0,1.19-1.19ZM8.592,14.49a5.9,5.9,0,1,1,5.9-5.9,5.9,5.9,0,0,1-5.9,5.9Z" transform="translate(833.539 437)"/>
+    <g id="blood-donation-svgrepo-com" transform="translate(838.722 440.999)">
+      <g id="Group_2" data-name="Group 2" transform="translate(0 0)">
+        <g id="Group_1" data-name="Group 1" transform="translate(0)">
+          <path id="Path_4" data-name="Path 4" d="M70.091.124a.341.341,0,0,0-.528,0c-.927,1.138-3.1,4.082-3.1,5.6a3.362,3.362,0,0,0,6.725,0C73.189,4.206,71.007,1.249,70.091.124ZM69.826,8.4a2.684,2.684,0,0,1-2.681-2.681c0-1.149,1.744-3.628,2.681-4.833.938,1.2,2.681,3.683,2.681,4.833A2.684,2.684,0,0,1,69.826,8.4Z" transform="translate(-66.464 0.002)"/>
+          <path id="Path_5" data-name="Path 5" d="M127.663,262.049a1.955,1.955,0,0,1,.188-.618.341.341,0,1,0-.628-.265,2.431,2.431,0,0,0-.242.883.34.34,0,0,0,.34.34h0A.341.341,0,0,0,127.663,262.049Z" transform="translate(-125.908 -256.328)"/>
+          <path id="Path_6" data-name="Path 6" d="M148.762,367a1.611,1.611,0,0,1-1.317-.687.341.341,0,1,0-.558.391,2.293,2.293,0,0,0,1.875.977.341.341,0,1,0,0-.681Z" transform="translate(-145.399 -359.668)"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

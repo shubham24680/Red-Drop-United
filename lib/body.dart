@@ -1,7 +1,9 @@
-import 'package:blood_donation/components.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+
+import 'components.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -17,7 +19,7 @@ class _BodyState extends State<Body> {
     return Column(
       children: [
         SizedBox(
-          height: 220,
+          height: 200,
           child: PageView.builder(
             controller: controller,
             itemCount: 4,
@@ -44,39 +46,62 @@ class _BodyState extends State<Body> {
             dotWidth: 10,
           ),
         ),
-        Container(
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 20),
-          height: 300,
-          child: CustomScrollView(
-            slivers: [
-              SliverGrid(
-                delegate: SliverChildBuilderDelegate(
-                    (context, index) => Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(10),
-                          ),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                            children: [
-                              SvgPicture.asset(
-                                  "assets/images/blood-ab-n-svgrepo-com.svg"),
-                              const Text("Donation"),
-                            ],
-                          ),
-                        ),
-                    childCount: 6),
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 3,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
-                  childAspectRatio: 1,
+        const Tile(),
+      ],
+    );
+  }
+}
+
+class Tile extends StatefulWidget {
+  const Tile({super.key});
+
+  @override
+  State<Tile> createState() => _TileState();
+}
+
+class _TileState extends State<Tile> {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 40),
+      height: 340,
+      child: GridView.builder(
+        itemCount: tile.length,
+        physics: const NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemBuilder: (context, index) => InkWell(
+          onTap: () {},
+          child: Container(
+            decoration: BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(10),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SvgPicture.asset(
+                  tile[index][1],
+                  color: pink,
+                  height: 35,
                 ),
-              )
-            ],
+                Text(
+                  tile[index][0],
+                  style: GoogleFonts.averageSans(
+                    color: black,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
-      ],
+        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 3,
+          mainAxisSpacing: 14,
+          crossAxisSpacing: 14,
+          childAspectRatio: 1,
+        ),
+      ),
     );
   }
 }

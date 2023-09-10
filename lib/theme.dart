@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 
+import 'components.dart';
+
 theme() {
   return ThemeData.light().copyWith(
-    scaffoldBackgroundColor: Colors.grey[200],
+    scaffoldBackgroundColor: background,
     appBarTheme: AppBarTheme(
-      backgroundColor: Colors.grey[200],
+      backgroundColor: background,
       elevation: 0,
-      toolbarHeight: 70,
+      toolbarHeight: 60,
     ),
   );
 }
