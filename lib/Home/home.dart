@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'appbar.dart';
+import '../appbar.dart';
 import 'body.dart';
 
 class Home extends StatelessWidget {
