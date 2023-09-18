@@ -9,6 +9,7 @@ theme() {
       backgroundColor: background,
       elevation: 0,
       toolbarHeight: 60,
+      centerTitle: true,
     ),
   );
 }

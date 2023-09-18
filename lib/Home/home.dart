@@ -9,7 +9,7 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: homeAppBar(),
+      appBar: homeAppBar(context),
       drawer: const Drawer(),
       body: const Body(),
     );

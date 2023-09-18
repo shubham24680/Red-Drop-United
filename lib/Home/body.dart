@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import '../button.dart';
 import '../components.dart';
+import '../icons.dart';
 import '../text.dart';
 import 'component.dart';
+import 'info.dart';
 
 class Body extends StatefulWidget {
   const Body({super.key});
@@ -39,11 +42,17 @@ class _BodyState extends State<Body> {
             padding: EdgeInsets.only(left: 15),
             child: CText(
               title: "Donation Request",
-              size: 24,
+              size: 22,
               color: Colors.black87,
             ),
           ),
-          const CustomCard(),
+          SizedBox(
+            height: 200,
+            child: PageView.builder(
+              itemCount: request.length,
+              itemBuilder: (context, index) => CustomCard(index: index),
+            ),
+          )
         ],
       ),
     );

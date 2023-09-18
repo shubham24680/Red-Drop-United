@@ -32,13 +32,25 @@ pageView(controller) {
   );
 }
 
-List<List<String>> tile = [
-  ["Find Donors", "assets/icons/donor.svg"],
-  ["Donates", "assets/icons/request.svg"],
-  ["Map", "assets/icons/map.svg"],
-  ["News", "assets/icons/article.svg"],
-  ["Feedback", "assets/icons/feedback.svg"],
-  ["Report", "assets/icons/report.svg"],
+class CTile {
+  final String name;
+  final String icon;
+  final String route;
+
+  CTile({
+    required this.name,
+    required this.icon,
+    required this.route,
+  });
+}
+
+List<CTile> tile = [
+  CTile(name: "Find Donors", icon: "assets/icons/donor.svg", route: 'donor'),
+  CTile(name: "Donates", icon: "assets/icons/request.svg", route: 'donates'),
+  CTile(name: "Map", icon: "assets/icons/map.svg", route: 'maps'),
+  CTile(name: "News", icon: "assets/icons/article.svg", route: 'news'),
+  CTile(name: "Feedback", icon: "assets/icons/feedback.svg", route: 'feedback'),
+  CTile(name: "Report", icon: "assets/icons/report.svg", route: 'report'),
 ];
 
 class Tile extends StatefulWidget {
@@ -52,14 +64,14 @@ class _TileState extends State<Tile> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.only(left: 15, right: 15, top: 30),
-      height: 300,
+      padding: const EdgeInsets.only(left: 15, right: 15, top: 20),
+      height: 290,
       child: GridView.builder(
         itemCount: tile.length,
         physics: const NeverScrollableScrollPhysics(),
         shrinkWrap: true,
         itemBuilder: (context, index) => InkWell(
-          onTap: () {},
+          onTap: () => Navigator.pushNamed(context, tile[index].route),
           child: Container(
             decoration: BoxDecoration(
               color: Colors.white,
@@ -68,8 +80,8 @@ class _TileState extends State<Tile> {
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
-                CIcons(title: tile[index][1]),
-                CText(title: tile[index][0]),
+                CIcons(title: tile[index].icon),
+                CText(title: tile[index].name),
               ],
             ),
           ),
@@ -86,7 +98,9 @@ class _TileState extends State<Tile> {
 }
 
 class CustomCard extends StatefulWidget {
-  const CustomCard({super.key});
+  const CustomCard({super.key, required this.index});
+
+  final int index;
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -95,59 +109,54 @@ class CustomCard extends StatefulWidget {
 class _CustomCardState extends State<CustomCard> {
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 200,
-      child: PageView.builder(
-        itemCount: request.length,
-        itemBuilder: (context, index) => Container(
-          margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(10),
-          ),
-          child: Row(
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+      height: 190,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+      ),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const CText(title: "Name"),
-                      CText(
-                        title: request[index].name,
-                        color: Colors.black,
-                        size: 18,
-                      ),
-                      const SizedBox(height: 10),
-                      const CText(title: "Location"),
-                      CText(
-                        title: request[index].location,
-                        color: Colors.black,
-                        size: 18,
-                      ),
-                    ],
+                  const CText(title: "Name"),
+                  CText(
+                    title: request[widget.index].name,
+                    color: Colors.black,
+                    size: 18,
                   ),
-                  CText(title: "${request[index].time} Min Ago", size: 14),
+                  const SizedBox(height: 10),
+                  const CText(title: "Location"),
+                  CText(
+                    title: request[widget.index].location,
+                    color: Colors.black,
+                    size: 18,
+                  ),
                 ],
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  CIcons(
-                    title: request[index].bloodType,
-                    size: 50,
-                  ),
-                  const CTextButton(title: "Donate"),
-                ],
-              ),
+              CText(title: "${request[widget.index].time} Min Ago", size: 14),
             ],
           ),
-        ),
+          Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              CIcons(
+                title: request[widget.index].bloodType,
+                size: 50,
+              ),
+              const CTextButton(title: "Donate"),
+            ],
+          ),
+        ],
       ),
     );
   }

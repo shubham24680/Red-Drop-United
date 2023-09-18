@@ -1,3 +1,4 @@
+import 'package:blood_donation/routes.dart';
 import 'package:blood_donation/theme.dart';
 import 'package:flutter/material.dart';
 
@@ -15,6 +16,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Red Drop United',
       theme: theme(),
+      routes: routes,
       home: const Home(),
       debugShowCheckedModeBanner: false,
     );
