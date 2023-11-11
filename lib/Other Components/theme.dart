@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'Other Components/components.dart';
+import 'components.dart';
 
 theme() {
   return ThemeData.light().copyWith(

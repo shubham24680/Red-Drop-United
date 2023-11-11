@@ -1,10 +1,16 @@
-import 'package:blood_donation/routes.dart';
-import 'package:blood_donation/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 import 'Home/home.dart';
+import 'Other Components/routes.dart';
+import 'Other Components/theme.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
   runApp(const MyApp());
 }
 

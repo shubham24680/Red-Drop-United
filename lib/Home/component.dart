@@ -1,9 +1,10 @@
-import 'package:blood_donation/Home/info.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '../button.dart';
-import '../icons.dart';
-import '../text.dart';
+import '../Home/info.dart';
+import '../Other Components/button.dart';
+import '../Other Components/icons.dart';
+import '../Other Components/text.dart';
 
 List<String> images = [
   "assets/images/donation (0).jpg",
@@ -97,10 +98,21 @@ class _TileState extends State<Tile> {
   }
 }
 
-class CustomCard extends StatefulWidget {
-  const CustomCard({super.key, required this.index});
+final Map<String, String> blood = {
+  "A+": "assets/icons/blood-a-p.svg",
+  "A-": "assets/icons/blood-a-n.svg",
+  "B+": "assets/icons/blood-b-p.svg",
+  "B-": "assets/icons/blood-b-n.svg",
+  "O+": "assets/icons/blood-o-p.svg",
+  "O-": "assets/icons/blood-o-n.svg",
+  "AB+": "assets/icons/blood-ab-p.svg",
+  "AB-": "assets/icons/blood-ab-n.svg",
+};
 
-  final int index;
+class CustomCard extends StatefulWidget {
+  const CustomCard({super.key, required this.doc});
+
+  final DocumentSnapshot doc;
 
   @override
   State<CustomCard> createState() => _CustomCardState();
@@ -117,10 +129,10 @@ class _CustomCardState extends State<CustomCard> {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Column(
+          Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
@@ -128,32 +140,37 @@ class _CustomCardState extends State<CustomCard> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const CText(title: "Name"),
-                  CText(
-                    title: request[widget.index].name,
-                    color: Colors.black,
-                    size: 18,
+                  SizedBox(
+                    child: CText(
+                      title: widget.doc['name'],
+                      color: Colors.black,
+                      size: 18,
+                    ),
                   ),
                   const SizedBox(height: 10),
                   const CText(title: "Location"),
-                  CText(
-                    title: request[widget.index].location,
-                    color: Colors.black,
-                    size: 18,
-                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width / 1.4,
+                    child: CText(
+                      title: widget.doc['location'],
+                      color: Colors.black,
+                      size: 18,
+                    ),
+                  )
                 ],
               ),
-              CText(title: "${request[widget.index].time} Min Ago", size: 14),
-            ],
-          ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: [
               CIcons(
-                title: request[widget.index].bloodType,
+                title: blood[widget.doc['blood']]!,
                 size: 50,
               ),
-              const CTextButton(title: "Donate"),
+            ],
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: const [
+              CText(title: "15 Min Ago", size: 14),
+              CTextButton(title: "Donate"),
             ],
           ),
         ],

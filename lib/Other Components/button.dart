@@ -1,7 +1,7 @@
-import 'package:blood_donation/text.dart';
 import 'package:flutter/material.dart';
 
 import 'components.dart';
+import 'text.dart';
 
 class CTextButton extends StatefulWidget {
   const CTextButton({super.key, required this.title});

@@ -38,6 +38,10 @@ dependencies:
   smooth_page_indicator: ^1.1.0
   flutter_svg: ^2.0.5
   google_fonts: ^4.0.4
+  firebase_core: ^2.20.0
+  cloud_firestore: ^4.12.1
+  # dropdownfield: ^1.0.3
+  dropdown_textfield: ^1.0.8
 
 dev_dependencies:
   flutter_test:

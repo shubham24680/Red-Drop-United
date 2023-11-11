@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import 'Other Components/components.dart';
-import 'Other Components/text.dart';
+import 'components.dart';
+import 'text.dart';
 
 homeAppBar(context) {
   return AppBar(

@@ -16,6 +16,8 @@ class CText extends StatelessWidget {
     return Text(
       title,
       // textAlign: align ?? TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
       style: GoogleFonts.averageSans(
         color: color ?? black,
         fontWeight: FontWeight.bold,
