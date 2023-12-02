@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../Home/info.dart';
 import '../Other Components/button.dart';
+import '../Other Components/components.dart';
 import '../Other Components/icons.dart';
 import '../Other Components/text.dart';
 
@@ -160,7 +161,7 @@ class _CustomCardState extends State<CustomCard> {
                 ],
               ),
               CIcons(
-                title: blood[widget.doc['blood']]!,
+                title: blood[widget.doc['blood group']]!,
                 size: 50,
               ),
             ],
@@ -174,6 +175,51 @@ class _CustomCardState extends State<CustomCard> {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+class CustomTextField extends StatefulWidget {
+  const CustomTextField(
+      {super.key,
+      required this.controller,
+      this.keyboardType,
+      required this.hintText,
+      required this.icon});
+
+  final TextEditingController controller;
+  final TextInputType? keyboardType;
+  final String hintText;
+  final IconData icon;
+
+  @override
+  State<CustomTextField> createState() => _CustomTextFieldState();
+}
+
+class _CustomTextFieldState extends State<CustomTextField> {
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: widget.controller,
+      cursorColor: pink,
+      keyboardType: widget.keyboardType ?? TextInputType.text,
+      decoration: InputDecoration(
+        filled: true,
+        fillColor: Colors.white,
+        hintText: widget.hintText,
+        suffixIcon: Icon(
+          widget.icon,
+          color: pink,
+        ),
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: Colors.white),
+          borderRadius: BorderRadius.circular(12),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: const BorderSide(color: pink),
+          borderRadius: BorderRadius.circular(12),
+        ),
       ),
     );
   }

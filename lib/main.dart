@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'Onboarding/onboarding_screen.dart';
 import 'firebase_options.dart';
 
 import 'Home/home.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
       title: 'Red Drop United',
       theme: theme(),
       routes: routes,
-      home: const Home(),
+      home: const OnboardingScreen(),
       debugShowCheckedModeBanner: false,
     );
   }

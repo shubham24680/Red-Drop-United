@@ -1,3 +1,4 @@
+import 'package:blood_donation/Home/component.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,7 @@ class _FindDonorState extends State<FindDonor> {
   final _phoneController = TextEditingController();
   final _dateController = TextEditingController();
   final _locationController = TextEditingController();
+  final _unitsController = TextEditingController();
   final CollectionReference _request =
       FirebaseFirestore.instance.collection("requests");
 
@@ -35,11 +37,22 @@ class _FindDonorState extends State<FindDonor> {
       DropDownValueModel(name: "O-", value: 7),
     ];
 
+    showDate() {
+      showDatePicker(
+              context: context,
+              initialDate: DateTime.now(),
+              firstDate: DateTime.now(),
+              lastDate: DateTime(2025))
+          .then((value) {
+        _dateController.text = "${value!.day}/${value.month}/${value.year}";
+      });
+    }
+
     return Scaffold(
       appBar: tileAppBar("Request for blood", context),
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 15),
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
           child: Column(
             children: [
               const CText(
@@ -69,55 +82,14 @@ class _FindDonorState extends State<FindDonor> {
               ),
               const SizedBox(height: 10),
               //Name
-              TextField(
-                controller: _nameController,
-                cursorColor: pink,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: "Patient Name",
-                  suffixIcon: const Icon(
-                    Icons.person,
-                    color: pink,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: pink),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              ),
+              CustomTextField(controller: _nameController, hintText: "Patient Name", icon: Icons.person),
               const SizedBox(height: 10),
               //Phone no.
-              TextField(
-                controller: _phoneController,
-                cursorColor: pink,
-                keyboardType: TextInputType.phone,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: "Mobile Number",
-                  suffixIcon: const Icon(
-                    Icons.phone_android_rounded,
-                    color: pink,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: pink),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              ),
+              CustomTextField(controller: _phoneController, hintText: "Mobile Number", icon: Icons.phone_android, keyboardType: TextInputType.phone),
               const SizedBox(height: 10),
               // Date
               TextField(
-                // onTap: () => showDate(),
+                onTap: () => showDate(),
                 controller: _dateController,
                 cursorColor: pink,
                 readOnly: true,
@@ -140,41 +112,36 @@ class _FindDonorState extends State<FindDonor> {
                 ),
               ),
               const SizedBox(height: 10),
+              // blood units
+              CustomTextField(controller: _unitsController, hintText: "Select Units", icon: Icons.bloodtype, keyboardType: TextInputType.number),
+              const SizedBox(height: 10),
               //Location
-              TextField(
-                controller: _locationController,
-                cursorColor: pink,
-                decoration: InputDecoration(
-                  filled: true,
-                  fillColor: Colors.white,
-                  hintText: "Select Location",
-                  suffixIcon: const Icon(
-                    Icons.location_pin,
-                    color: pink,
-                  ),
-                  enabledBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: Colors.white),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  focusedBorder: OutlineInputBorder(
-                    borderSide: const BorderSide(color: pink),
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                ),
-              ),
+              CustomTextField(controller: _locationController, hintText: "Select Location", icon: Icons.location_pin),
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
-                  final String name = _nameController.text;
-                  final String location = _locationController.text;
                   final String blood = (_bloodController.dropDownValue) != null
                       ? _bloodController.dropDownValue!.name
                       : "A+";
-                  await _request.add(
-                      {"blood": blood, "name": name, "location": location});
+                  final String name = _nameController.text;
+                  final int? phone = int.tryParse(_phoneController.text);
+                  final String date = _dateController.text;
+                  final String location = _locationController.text;
+                  final int? units = int.tryParse(_unitsController.text);
+                  await _request.add({
+                    "blood group": blood,
+                    "name": name,
+                    "phone number": phone,
+                    "date": date,
+                    "location": location,
+                    "blood units": units,
+                  });
                   _bloodController.dropDownValue = null;
                   _nameController.text = '';
+                  _phoneController.text = '';
+                  _dateController.text = '';
                   _locationController.text = '';
+                  _unitsController.text = '';
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: pink,
