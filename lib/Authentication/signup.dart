@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../Other Components/components.dart';
-import '../Other Components/text.dart';
 import 'component.dart';
 
 class Signup extends StatelessWidget {
@@ -26,15 +23,12 @@ class Signup extends StatelessWidget {
               Image.asset("assets/images/blood.png", height: 200),
               const SizedBox(height: 50),
               // heading--------------
-              Text(
-                "You are just one step closer to us!",
-                style: GoogleFonts.hind(fontSize: 20),
-              ),
+              heading("You are just one step closer to us!"),
               const SizedBox(height: 10),
               // Email Text Field -----------
               CustomTextField(
                 controller: emailController,
-                hintText: "Email",
+                hintText: "Enter your mail",
                 icon: Icons.email,
                 obscure: false,
               ),
@@ -42,7 +36,7 @@ class Signup extends StatelessWidget {
               // Password Text Field ----------
               CustomTextField(
                 controller: passwordController,
-                hintText: "Password",
+                hintText: "Create Password",
                 icon: Icons.key,
                 obscure: false,
               ),
@@ -50,39 +44,16 @@ class Signup extends StatelessWidget {
               // Confirm Password Text Field ------------
               CustomTextField(
                 controller: newPasswordController,
-                hintText: "Confirm Password",
+                hintText: "Re-type your Password",
                 icon: Icons.password,
                 obscure: true,
               ),
               const SizedBox(height: 20),
               // Sign In Button ------------
-              ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, 'home'),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: pink,
-                    minimumSize: const Size.fromHeight(60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    )),
-                child: const CText(
-                  title: "Register",
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
-              const SizedBox(height: 105),
+              const CustomElevatedButton(title: "Register", route: 'userInfo'),
+              const SizedBox(height: 20),
               // Login Invitation --------------
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Already a member?",
-                    style: GoogleFonts.hind(fontWeight: FontWeight.bold),
-                  ),
-                  const CustomTextButton(
-                      routeName: 'login', title: "Log In")
-                ],
-              ),
+              const BottomText(text: "Already a member?", routeName: 'login', title: "Log In"),
             ],
           ),
         ),

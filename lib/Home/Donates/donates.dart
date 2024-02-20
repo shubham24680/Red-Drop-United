@@ -1,8 +1,7 @@
-import 'package:blood_donation/Home/component.dart';
-import 'package:blood_donation/Other%20Components/components.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
+import '/Home/component.dart';
 import '../../Other Components/appbar.dart';
 
 class Donates extends StatefulWidget {

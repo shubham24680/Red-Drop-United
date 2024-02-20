@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
-import '../Other Components/components.dart';
-import '../Other Components/text.dart';
 import 'component.dart';
 
 class Login extends StatefulWidget {
@@ -30,15 +27,12 @@ class _LoginState extends State<Login> {
               Image.asset("assets/images/blood.png", height: 200),
               const SizedBox(height: 50),
               // heading--------------
-              Text(
-                "Welcome back, you've been missed!",
-                style: GoogleFonts.hind(fontSize: 20),
-              ),
+              heading("Welcome back, you've been missed!"),
               const SizedBox(height: 10),
               // Email Text Field -----------
               CustomTextField(
                 controller: emailController,
-                hintText: "Email",
+                hintText: "Enter your mail",
                 icon: Icons.email,
                 obscure: false,
               ),
@@ -46,7 +40,7 @@ class _LoginState extends State<Login> {
               // Password Text Field ----------
               CustomTextField(
                 controller: passwordController,
-                hintText: "Password",
+                hintText: "Enter your Password",
                 icon: Icons.key,
                 obscure: true,
               ),
@@ -55,33 +49,13 @@ class _LoginState extends State<Login> {
                   routeName: 'forgotPassword', title: "Forgot Password?"),
               const SizedBox(height: 20),
               // Sign In Button ------------
-              ElevatedButton(
-                onPressed: () => Navigator.pushNamed(context, 'home'),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: pink,
-                    minimumSize: const Size.fromHeight(60),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(12),
-                    )),
-                child: const CText(
-                  title: "Sign In",
-                  color: Colors.white,
-                  size: 20,
-                ),
-              ),
-              const SizedBox(height: 130),
+              const CustomElevatedButton(title: "Log  In", route: 'home'),
+              const SizedBox(height: 20),
               // Signup Invitation --------------
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text(
-                    "Not a member?",
-                    style: GoogleFonts.hind(fontWeight: FontWeight.bold),
-                  ),
-                  const CustomTextButton(
-                      routeName: 'signup', title: "Register Now")
-                ],
-              ),
+              const BottomText(
+                  text: "Not a member?",
+                  routeName: 'signup',
+                  title: "Register Now"),
             ],
           ),
         ),

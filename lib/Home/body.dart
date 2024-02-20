@@ -3,9 +3,6 @@ import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'component.dart';
 import 'info.dart';
-import '../Other Components/components.dart';
-import '../Other Components/text.dart';
-
 class Body extends StatefulWidget {
   const Body({super.key});
 
@@ -25,7 +22,7 @@ class _BodyState extends State<Body> {
           Center(
             child: SmoothPageIndicator(
               controller: controller,
-              count: 4,
+              count: images.length,
               effect: SlideEffect(
                 activeDotColor: pink,
                 dotColor: Colors.grey.shade400,

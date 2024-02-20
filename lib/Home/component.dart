@@ -1,11 +1,36 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 import '../Home/info.dart';
-import '../Other Components/button.dart';
-import '../Other Components/components.dart';
-import '../Other Components/icons.dart';
-import '../Other Components/text.dart';
+
+const pink = Color(0xFFFB6376);
+const black = Colors.black38;
+
+class CText extends StatelessWidget {
+  const CText({super.key, required this.title, this.color, this.size});
+
+  final String title;
+  final Color? color;
+  final double? size;
+  // final TextAlign? align;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      title,
+      // textAlign: align ?? TextAlign.center,
+      overflow: TextOverflow.ellipsis,
+      maxLines: 2,
+      style: GoogleFonts.averageSans(
+        color: color ?? black,
+        fontWeight: FontWeight.bold,
+        fontSize: size ?? 16,
+      ),
+    );
+  }
+}
 
 List<String> images = [
   "assets/images/donation (0).jpg",
@@ -32,6 +57,22 @@ pageView(controller) {
       ),
     ),
   );
+}
+
+class CIcons extends StatelessWidget {
+  const CIcons({super.key, required this.title, this.size});
+
+  final String title;
+  final double? size;
+
+  @override
+  Widget build(BuildContext context) {
+    return SvgPicture.asset(
+      title,
+      colorFilter: const ColorFilter.mode(pink, BlendMode.srcIn),
+      height: size ?? 35,
+    );
+  }
 }
 
 class CTile {
@@ -62,6 +103,7 @@ class Tile extends StatefulWidget {
   State<Tile> createState() => _TileState();
 }
 
+// still fixing ----------------
 class _TileState extends State<Tile> {
   @override
   Widget build(BuildContext context) {
@@ -95,6 +137,25 @@ class _TileState extends State<Tile> {
           childAspectRatio: 1,
         ),
       ),
+    );
+  }
+}
+
+class CTextButton extends StatefulWidget {
+  const CTextButton({super.key, required this.title});
+
+  final String title;
+
+  @override
+  State<CTextButton> createState() => _CTextButtonState();
+}
+
+class _CTextButtonState extends State<CTextButton> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: () {},
+      child: CText(title: widget.title, color: pink, size: 24),
     );
   }
 }

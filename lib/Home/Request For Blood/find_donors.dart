@@ -4,8 +4,6 @@ import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 
 import '../../Other Components/appbar.dart';
-import '../../Other Components/components.dart';
-import '../../Other Components/text.dart';
 
 class FindDonor extends StatefulWidget {
   const FindDonor({super.key});

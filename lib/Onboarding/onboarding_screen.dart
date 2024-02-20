@@ -1,6 +1,7 @@
-import 'package:blood_donation/Other%20Components/components.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'component.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
