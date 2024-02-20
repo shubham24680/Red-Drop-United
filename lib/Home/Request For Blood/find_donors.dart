@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dropdown_textfield/dropdown_textfield.dart';
 import 'package:flutter/material.dart';
 
-import '../../Other Components/appbar.dart';
+import 'component.dart';
 
 class FindDonor extends StatefulWidget {
   const FindDonor({super.key});
@@ -38,11 +38,19 @@ class _FindDonorState extends State<FindDonor> {
     showDate() {
       showDatePicker(
               context: context,
+              builder: (context, child) => Theme(
+                    data: Theme.of(context).copyWith(
+                        colorScheme: const ColorScheme.light(
+                      primary: pink,
+                    )),
+                    child: child!,
+                  ),
               initialDate: DateTime.now(),
               firstDate: DateTime.now(),
               lastDate: DateTime(2025))
           .then((value) {
-        _dateController.text = "${value!.day}/${value.month}/${value.year}";
+        _dateController.text =
+            value != null ? "${value.day}/${value.month}/${value.year}" : "";
       });
     }
 
@@ -80,10 +88,17 @@ class _FindDonorState extends State<FindDonor> {
               ),
               const SizedBox(height: 10),
               //Name
-              CustomTextField(controller: _nameController, hintText: "Patient Name", icon: Icons.person),
+              CustomTextField(
+                  controller: _nameController,
+                  hintText: "Patient Name",
+                  icon: Icons.person),
               const SizedBox(height: 10),
               //Phone no.
-              CustomTextField(controller: _phoneController, hintText: "Mobile Number", icon: Icons.phone_android, keyboardType: TextInputType.phone),
+              CustomTextField(
+                  controller: _phoneController,
+                  hintText: "Mobile Number",
+                  icon: Icons.phone_android,
+                  keyboardType: TextInputType.phone),
               const SizedBox(height: 10),
               // Date
               TextField(
@@ -111,10 +126,19 @@ class _FindDonorState extends State<FindDonor> {
               ),
               const SizedBox(height: 10),
               // blood units
-              CustomTextField(controller: _unitsController, hintText: "Select Units", icon: Icons.bloodtype, keyboardType: TextInputType.number),
+              CustomTextField(
+                  controller: _unitsController,
+                  hintText: "Select Units",
+                  icon: Icons.bloodtype,
+                  keyboardType: TextInputType.number),
               const SizedBox(height: 10),
               //Location
-              CustomTextField(controller: _locationController, hintText: "Select Location", icon: Icons.location_pin),
+              CustomTextField(
+                  controller: _locationController,
+                  hintText: "Select Location",
+                  icon: Icons.location_pin),
+              const SizedBox(height: 20),
+              
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {
@@ -140,6 +164,8 @@ class _FindDonorState extends State<FindDonor> {
                   _dateController.text = '';
                   _locationController.text = '';
                   _unitsController.text = '';
+                  if (!mounted) return;
+                  Navigator.pushNamed(context, 'home');
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: pink,

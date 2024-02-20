@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../Home/info.dart';
-
 const pink = Color(0xFFFB6376);
 const black = Colors.black38;
 
@@ -185,56 +183,65 @@ class _CustomCardState extends State<CustomCard> {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-      padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
-      height: 190,
+      height: 170,
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
       ),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      child: Row(
         children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          Container(
+            height: MediaQuery.of(context).size.height,
+            width: 20,
+            margin: const EdgeInsets.only(right: 10),
+            decoration: const BoxDecoration(
+              color: pink,
+              borderRadius: BorderRadius.horizontal(left: Radius.circular(10)),
+            ),
+          ),
+          Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const CText(title: "Name"),
-                  SizedBox(
-                    child: CText(
-                      title: widget.doc['name'],
-                      color: Colors.black,
-                      size: 18,
-                    ),
-                  ),
-                  const SizedBox(height: 10),
-                  const CText(title: "Location"),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width / 1.4,
-                    child: CText(
-                      title: widget.doc['location'],
-                      color: Colors.black,
-                      size: 18,
-                    ),
-                  )
-                ],
+              const SizedBox(height: 5),
+              SizedBox(
+                child: CText(
+                  title: widget.doc['name'],
+                  color: Colors.black87,
+                  size: 22,
+                ),
               ),
+              SizedBox(
+                width: MediaQuery.of(context).size.width - 65,
+                child: CText(
+                  title: widget.doc['location'],
+                  size: 14,
+                ),
+              ),
+              const Expanded(child: SizedBox(height: 10)),
               CIcons(
                 title: blood[widget.doc['blood group']]!,
-                size: 50,
+                size: 30,
               ),
+              const SizedBox(height: 5),
+              Row(
+                children: [
+                  const Icon(Icons.calendar_month, size: 14, color: pink),
+                  const SizedBox(width: 3),
+                  CText(
+                      title: widget.doc['date'], size: 14, color: Colors.black87),
+                ],
+              ),
+              const SizedBox(height: 5),
+              Row(
+                children: const [
+                  Icon(Icons.location_on_rounded, size: 14, color: pink),
+                  SizedBox(width: 3),
+                  CText(title: "1500m away", size: 14, color: Colors.black87),
+                ],
+              ),
+              const SizedBox(height: 5),
             ],
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            crossAxisAlignment: CrossAxisAlignment.end,
-            children: const [
-              CText(title: "15 Min Ago", size: 14),
-              CTextButton(title: "Donate"),
-            ],
-          ),
+          )
         ],
       ),
     );
@@ -285,3 +292,55 @@ class _CustomTextFieldState extends State<CustomTextField> {
     );
   }
 }
+
+// Container(
+//       margin: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+//       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
+//       height: 150,
+//       decoration: BoxDecoration(
+//         color: Colors.white,
+//         borderRadius: BorderRadius.circular(10),
+//       ),
+//       child: Column(
+//         mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//         children: [
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             crossAxisAlignment: CrossAxisAlignment.start,
+//             children: [
+//               Column(
+//                 crossAxisAlignment: CrossAxisAlignment.start,
+//                 children: [
+//                   SizedBox(
+//                     child: CText(
+//                       title: widget.doc['name'],
+//                       color: Colors.black,
+//                       size: 24,
+//                     ),
+//                   ),
+//                   SizedBox(
+//                     width: MediaQuery.of(context).size.width / 1.4,
+//                     child: CText(
+//                       title: widget.doc['location'],
+//                       size: 16,
+//                     ),
+//                   )
+//                 ],
+//               ),
+//               CIcons(
+//                 title: blood[widget.doc['blood group']]!,
+//                 size: 50,
+//               ),
+//             ],
+//           ),
+//           Row(
+//             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//             crossAxisAlignment: CrossAxisAlignment.end,
+//             children: const [
+//               CText(title: "15 Min Ago", size: 14),
+//               CTextButton(title: "Donate"),
+//             ],
+//           ),
+//         ],
+//       ),
+//     );

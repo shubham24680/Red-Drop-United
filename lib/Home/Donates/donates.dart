@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
-import '/Home/component.dart';
-import '../../Other Components/appbar.dart';
+import '../component.dart';
+import 'components.dart';
 
 class Donates extends StatefulWidget {
   const Donates({super.key});

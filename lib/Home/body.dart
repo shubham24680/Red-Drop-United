@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import 'component.dart';
-import 'info.dart';
+// import 'info.dart';
 class Body extends StatefulWidget {
   const Body({super.key});
 
