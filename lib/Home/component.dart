@@ -151,9 +151,9 @@ class CTextButton extends StatefulWidget {
 class _CTextButtonState extends State<CTextButton> {
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () {},
-      child: CText(title: widget.title, color: pink, size: 24),
+    return GestureDetector(
+      onTap: () => Navigator.pushNamed(context, 'donates'),
+      child: CText(title: widget.title, color: pink, size: 14),
     );
   }
 }

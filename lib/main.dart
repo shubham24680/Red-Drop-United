@@ -3,7 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'Onboarding/onboarding_screen.dart';
 import 'firebase_options.dart';
 
-import 'Home/home.dart';
+// import 'Home/home.dart';
 import 'Other Components/routes.dart';
 import 'Other Components/theme.dart';
 

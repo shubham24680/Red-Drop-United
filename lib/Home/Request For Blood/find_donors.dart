@@ -47,10 +47,10 @@ class _FindDonorState extends State<FindDonor> {
                   ),
               initialDate: DateTime.now(),
               firstDate: DateTime.now(),
-              lastDate: DateTime(2025))
+              lastDate: DateTime(2026))
           .then((value) {
         _dateController.text =
-            value != null ? "${value.day}/${value.month}/${value.year}" : "";
+            value != null ? "${value.year}/${value.month}/${value.day}" : "";
       });
     }
 
@@ -138,7 +138,7 @@ class _FindDonorState extends State<FindDonor> {
                   hintText: "Select Location",
                   icon: Icons.location_pin),
               const SizedBox(height: 20),
-              
+
               const SizedBox(height: 20),
               ElevatedButton(
                 onPressed: () async {

@@ -45,6 +45,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
                     ),
                     const SizedBox(height: 30),
                     ElevatedButton(
+                      // onPressed: () {},
                       onPressed: () => Navigator.pushNamed(context, 'login'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.white,
